@@ -19,6 +19,52 @@ public class Bird : MonoBehaviour
     [SerializeField] private Color eatingColor;
     [SerializeField] private Color restingColor;
 
+    public float Energy
+    {
+        get => energy;
+        set => energy = value;
+    }
+
+    public float FullEnergy
+    {
+        get => fullEnergy;
+    }
+
+    public float EnergyRestoreRate
+    {
+        get => energyRestoreRate;
+    }
+
+    public float FlyingEnergyRate
+    {
+        get => flyingEnergyRate;
+    }
+
+    public float ChaseEnergyRate
+    {
+        get => chaseEnergyRate;
+    }
+
+    public Color ChasingColor
+    {
+        get => chasingColor;
+    }
+
+    public Color FlyingColor
+    {
+        get => flyingColor;
+    }
+
+    public Color EatingColor
+    {
+        get => eatingColor;
+    }
+
+    public Color RestingColor
+    {
+        get => restingColor;
+    }
+
     private float fullEnergy;
     private SpriteRenderer spriteRenderer;
 

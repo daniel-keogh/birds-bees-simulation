@@ -5,8 +5,6 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Bee : MonoBehaviour
 {
-    [SerializeField] private float speed;
-
     [Header("Nectar")]
     [SerializeField] private float nectarPayload;
     [SerializeField] private float nectarUnloadRate = 0.2f;
@@ -25,15 +23,59 @@ public class Bee : MonoBehaviour
     [SerializeField] private Color atHiveColor;
 
     private float fullEnergy;
-    private Transform target;
     private SpriteRenderer spriteRenderer;
     private Hive hive;
     private StateMachine stateMachine;
 
-    public Transform Target
+    public float Energy
     {
-        get => target;
-        set => target = value;
+        get => energy;
+        set => energy = value;
+    }
+
+    public float FullEnergy
+    {
+        get => fullEnergy;
+    }
+
+    public float LowEnergyValue
+    {
+        get => lowEnergyValue;
+    }
+
+    public float SearchEnergyRate
+    {
+        get => searchEnergyRate;
+    }
+
+    public float RestoreEnergyRate
+    {
+        get => restoreEnergyRate;
+    }
+
+    public float FleeEnergyRate
+    {
+        get => fleeEnergyRate;
+    }
+
+    public Color SearchingColor
+    {
+        get => searchingColor;
+    }
+
+    public Color GatheringColor
+    {
+        get => gatheringColor;
+    }
+
+    public Color DancingColor
+    {
+        get => dancingColor;
+    }
+
+    public Color AtHiveColor
+    {
+        get => atHiveColor;
     }
 
     void Awake()
