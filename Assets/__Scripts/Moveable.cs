@@ -2,22 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// This class adds the move behaviour to the Bird and Bee objects.
+// The Bird/Bee will move towards a "target" transform if it is set,
+// otherwise it will remain fixed in its current position.
 public class Moveable : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 3f;
 
-    private Vector3 target;
+    private Transform target;
+    private bool isStopped = false;
 
-    public Vector3 Target
+    public Transform Target
     {
         get => target;
         set => target = value;
     }
 
-    void Start()
-    {
-
-    }
+    public bool IsStopped => isStopped;
 
     void Update()
     {
@@ -26,23 +27,25 @@ public class Moveable : MonoBehaviour
 
     private void Move()
     {
-        if (target.magnitude > 0f)
+        if (target != null)
         {
             // Get the distance from the target
-            var distance = Vector2.Distance(transform.position, target);
+            var distance = Vector2.Distance(transform.position, target.position);
 
-            if (distance > Mathf.Epsilon)
+            if (distance > 0.1f)
             {
                 // Move towards the target
                 transform.position = Vector2.MoveTowards(
                     transform.position,
-                    target,
+                    target.position,
                     speed * Time.deltaTime
                 );
+                isStopped = false;
             }
-            else if (distance < Mathf.Epsilon)
+            else
             {
                 transform.position = this.transform.position;
+                isStopped = true;
             }
         }
     }

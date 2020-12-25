@@ -1,13 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
+// The ChaseController singleton.
+//
+// The ShowUIMessage method should get called by State objects
+// when an event has taken place (e.g. When a bee is eaten) and a message should 
+// be printed on the screen.
+// 
+// The remaining behaviour isn't fully implemented.
 public class ChaseController : MonoBehaviour
 {
-    private static ChaseController instance;
+    [Header("UI")]
+    [SerializeField] private Text infoText;
+    [SerializeField] private float messageDuration = 3f;
 
-    private Bird[] birds;
-    private Bee[] bees;
+    private static ChaseController instance;
 
     void Awake()
     {
@@ -16,8 +25,31 @@ public class ChaseController : MonoBehaviour
 
     void Start()
     {
-        birds = FindObjectsOfType<Bird>();
-        bees = FindObjectsOfType<Bee>();
+
+    }
+
+    void OnEnable()
+    {
+
+    }
+
+    void OnDisable()
+    {
+
+    }
+
+    public void ShowUIMessage(string message)
+    {
+        StartCoroutine(ShowTimedMessage(message));
+    }
+
+    private IEnumerator ShowTimedMessage(string message)
+    {
+        infoText.text = message;
+        yield return new WaitForSeconds(messageDuration);
+
+        // Hide the message
+        infoText.text = "";
     }
 
     private void SetupSingleton()
@@ -29,6 +61,7 @@ public class ChaseController : MonoBehaviour
         }
         else
         {
+            // if `instance` does not reference this object destroy it
             if (instance != this)
             {
                 Destroy(gameObject);
