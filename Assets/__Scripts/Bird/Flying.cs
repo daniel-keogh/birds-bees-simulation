@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// In this State, the Bird flys around in a random path by setting waypoints and then
-// re-setting the waypoint one it reaches that position. If a Bee is in range while the
+// In this State, the Bird flies around in a random path by setting a waypoint and then
+// re-setting the waypoint one it reaches it. If a Bee is in range while the
 // Bird is flying, the Bird transitions to the Chasing State and goes after the Bee.
-// Lastly, if the Bird runs out of energy it will transition to the Resting State and return
+// Lastly, when the Bird runs out of energy it will transition to the Resting State and return
 // to its nest.
 public class Flying : State
 {

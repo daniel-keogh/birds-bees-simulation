@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /**
- * This class is responsible for keeping track of the current state.
- * Each individual Bird and Bee object has a reference to a StateMachine and each StateMachine object 
- * can be in a single State at any one time. The StateMachine can switch states by setting the value of CurrentState to an instance of
- * a class that extends the State abstract class (See State.cs).
+ * This class is responsible for keeping track of the current State.
+ * Each individual Bird and Bee object has a reference to a StateMachine, and each StateMachine object 
+ * can be in a single State at any one time. The StateMachine can switch states by setting the value of CurrentState 
+ * to an instance of a class that extends the State abstract class (See State.cs).
  * 
- * Setting the CurrentState to a new value will cause the StateMachine to call Exit() on the current state
- * and Enter() on the new one.
+ * Setting the CurrentState to a new value will cause the StateMachine to automatically call Exit() on the current state
+ * object and Enter() on the new one.
  * 
  * References:
  * ===========

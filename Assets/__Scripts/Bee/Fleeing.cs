@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// When in this State the Bee will Flee back to the Hive by setting the
-// target variable in the Moveable class to the transform of the Hive gameObject.
+// When in this State the Bee will flee back to the Hive by setting the
+// target variable in the Moveable class to the transform of the Hive GameObject.
 public class Fleeing : State
 {
     private Bee bee;

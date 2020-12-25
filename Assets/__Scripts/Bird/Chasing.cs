@@ -5,7 +5,7 @@ using UnityEngine;
 // When in this State the Bird will chase a target GameObject that is passed in via
 // the constructor. If the Bird runs out of energy it will transition to the Resting
 // State and return to the nest. If the Bird catches the Bee, the OnTriggerEnter2D() callback
-// is invoked, the Bee gameObject is then destroyed and the Bird transitions to the Eating State. 
+// is invoked, the Bee GameObject is then destroyed and the Bird transitions to the Eating State. 
 public class Chasing : State
 {
     private Bird bird;
