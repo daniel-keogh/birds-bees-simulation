@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// When the Bee's StateMachine is in this State the Bee will return to the
+// When the Bee's StateMachine is in this State, the Bee will return to the
 // Hive and unload the nectar collected. After all the nectar has been
 // unloaded (by switching to the Dancing State), energy will be gradually restored
 // before transitioning to the Searching State.

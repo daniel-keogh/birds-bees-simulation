@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // When in this state the Bee will randomly move towards the location of one
-// of the flowers in the scene. When it reaches a flower it will transition to
-// the Gathering State. If the Bee runs out of energy it will transition to the AtHive
+// of the flowers in the scene. When it reaches a flower, it will transition to
+// the Gathering State. If the Bee runs out of energy, it will transition to the AtHive
 // State and return to the Hive.
 public class Searching : State
 {

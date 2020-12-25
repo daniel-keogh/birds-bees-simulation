@@ -9,11 +9,11 @@ using UnityEngine;
 [RequireComponent(typeof(SpriteRenderer))]
 public class Bird : MonoBehaviour
 {
-    [SerializeField] private float range;
+    [SerializeField] private float range = 3f;
     [SerializeField] private GameObject nest;
 
     [Header("Energy")]
-    [SerializeField] private float energy;
+    [SerializeField] private float energy = 200f;
     [SerializeField] private float restoreEnergyRate = 0.3f;
     [SerializeField] private float flyingEnergyRate = 0.4f;
     [SerializeField] private float chaseEnergyRate = 0.8f;

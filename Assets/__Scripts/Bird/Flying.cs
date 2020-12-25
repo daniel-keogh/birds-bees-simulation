@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // In this State, the Bird flies around in a random path by setting a waypoint and then
-// re-setting the waypoint one it reaches it. If a Bee is in range while the
+// re-setting the waypoint once it reaches it. If a Bee is in range while the
 // Bird is flying, the Bird transitions to the Chasing State and goes after the Bee.
 // Lastly, when the Bird runs out of energy it will transition to the Resting State and return
 // to its nest.
@@ -64,6 +64,7 @@ public class Flying : State
 
     private void LookForTarget()
     {
+        // If there is a Bee within range, chase after it
         foreach (var bee in GameObject.FindObjectsOfType<Bee>())
         {
             float distance = Vector2.Distance(bird.transform.position, bee.transform.position);

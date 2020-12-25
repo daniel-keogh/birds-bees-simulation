@@ -8,6 +8,7 @@ using UnityEngine;
 public class Eating : State
 {
     private Bird bird;
+    private ChaseController chaseController;
 
     public Eating(GameObject go, StateMachine stateMachine) : base(go, stateMachine) { }
 
@@ -16,6 +17,8 @@ public class Eating : State
         base.Enter();
         bird = go.GetComponent<Bird>();
         bird.GetComponent<SpriteRenderer>().color = bird.EatingColor;
+
+        chaseController = GameObject.FindObjectOfType<ChaseController>();
     }
 
     public override void Update()
@@ -24,7 +27,7 @@ public class Eating : State
 
         bird.Energy = bird.FullEnergy;
 
-        GameObject.FindObjectOfType<ChaseController>()?.ShowUIMessage("bee gets eaten...");
+        chaseController?.ShowUIMessage("bee gets eaten...");
 
         stateMachine.CurrentState = new Flying(go, stateMachine);
     }

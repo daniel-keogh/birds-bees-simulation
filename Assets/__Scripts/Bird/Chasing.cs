@@ -37,7 +37,7 @@ public class Chasing : State
         }
         else
         {
-            // No target exists transition to Flying State
+            // No target exists, transition to Flying State
             stateMachine.CurrentState = new Flying(go, stateMachine);
         }
     }
