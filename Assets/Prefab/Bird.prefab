@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d46dfc792850add44997bd49582fcebd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 4
 --- !u!114 &-9071868106882741857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,7 +112,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 3
   nest: {fileID: 0}
-  energy: 200
+  waypoints: []
+  energy: 400
   restoreEnergyRate: 0.3
   flyingEnergyRate: 0.4
   chaseEnergyRate: 0.8

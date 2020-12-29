@@ -8,7 +8,6 @@ using UnityEngine;
 // State and return to the Hive.
 public class Searching : State
 {
-    private Moveable moveable;
     private Bee bee;
 
     public Searching(GameObject go, StateMachine stateMachine) : base(go, stateMachine) { }
@@ -20,8 +19,8 @@ public class Searching : State
         bee = go.GetComponent<Bee>();
         bee.GetComponent<SpriteRenderer>().color = bee.SearchingColor;
 
-        moveable = go.GetComponent<Moveable>();
-        GameObject[] flowers = GameObject.FindGameObjectsWithTag("Flower");
+        Moveable moveable = go.GetComponent<Moveable>();
+        GameObject[] flowers = GameObject.FindGameObjectsWithTag(Tags.FLOWER);
 
         // Pick a flower to move to
         moveable.Target = flowers[Random.Range(0, flowers.Length)].transform;
@@ -30,15 +29,16 @@ public class Searching : State
     public override void Update()
     {
         base.Update();
+        DrainEnergy();
+    }
 
-        if (moveable.IsStopped)
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        base.OnTriggerEnter2D(other);
+
+        if (other.gameObject.tag == Tags.FLOWER)
         {
-            // At a flower
             stateMachine.CurrentState = new Gathering(go, stateMachine);
-        }
-        else
-        {
-            DrainEnergy();
         }
     }
 

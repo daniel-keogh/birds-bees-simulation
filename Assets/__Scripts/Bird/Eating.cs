@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // In this State the Bird's energy is restored and the ChaseController singleton
-// is notified that something has happened. Afterwards, The Bird transitions back
+// is notified that a Bee was eaten. Afterwards, The Bird transitions back
 // to the Flying State.
 public class Eating : State
 {

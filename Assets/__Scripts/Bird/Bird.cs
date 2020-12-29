@@ -11,9 +11,10 @@ public class Bird : MonoBehaviour
 {
     [SerializeField] private float range = 3f;
     [SerializeField] private GameObject nest;
+    [SerializeField] private Waypoint[] waypoints;
 
     [Header("Energy")]
-    [SerializeField] private float energy = 200f;
+    [SerializeField] private float energy = 400f;
     [SerializeField] private float restoreEnergyRate = 0.3f;
     [SerializeField] private float flyingEnergyRate = 0.4f;
     [SerializeField] private float chaseEnergyRate = 0.8f;
@@ -39,10 +40,12 @@ public class Bird : MonoBehaviour
     public float RestoreEnergyRate => restoreEnergyRate;
     public float FlyingEnergyRate => flyingEnergyRate;
     public float ChaseEnergyRate => chaseEnergyRate;
+    public Waypoint[] Waypoints => waypoints;
     public Color ChasingColor => chasingColor;
     public Color FlyingColor => flyingColor;
     public Color EatingColor => eatingColor;
     public Color RestingColor => restingColor;
+    public StateMachine StateMachine => stateMachine;
 
     void Awake()
     {

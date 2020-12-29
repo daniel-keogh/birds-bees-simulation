@@ -16,8 +16,8 @@ public class Bee : MonoBehaviour
     [SerializeField] private float nectarUnloadRate = 0.2f;
 
     [Header("Energy")]
-    [SerializeField] private float energy;
-    [SerializeField] private float lowEnergyValue;
+    [SerializeField] private float energy = 100f;
+    [SerializeField] private float lowEnergyValue = 0f;
     [SerializeField] private float searchEnergyRate = 0.1f;
     [SerializeField] private float restoreEnergyRate = 0.2f;
     [SerializeField] private float fleeEnergyRate = 0.3f;
@@ -57,6 +57,7 @@ public class Bee : MonoBehaviour
     public Color DancingColor => dancingColor;
     public Color AtHiveColor => atHiveColor;
     public Color FleeColor => fleeColor;
+    public StateMachine StateMachine => stateMachine;
 
     void Awake()
     {

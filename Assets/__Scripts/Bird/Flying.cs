@@ -2,17 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// In this State, the Bird flies around in a random path by setting a waypoint and then
-// re-setting the waypoint once it reaches it. If a Bee is in range while the
-// Bird is flying, the Bird transitions to the Chasing State and goes after the Bee.
+// In this State, the Bird flies around its pre-determined path by setting a waypoint and then
+// re-setting the waypoint once it reaches it. If a Bee is in range while the Bird is flying,
+// the BeginChase() method on the ChaseController is called and the Bird goes after the Bee.
 // Lastly, when the Bird runs out of energy it will transition to the Resting State and return
 // to its nest.
 public class Flying : State
 {
     private Bird bird;
     private Moveable moveable;
-    private Vector3 viewport;
-    private Transform waypoint;
+    private int currentWaypoint = 0;
 
     public Flying(GameObject go, StateMachine stateMachine) : base(go, stateMachine) { }
 
@@ -22,17 +21,7 @@ public class Flying : State
 
         bird = go.GetComponent<Bird>();
         bird.GetComponent<SpriteRenderer>().color = bird.FlyingColor;
-
-        viewport = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
-
-        // Place the waypoint at a random position within the scene
-        waypoint = new GameObject("Waypoint").transform;
-        waypoint.position = new Vector2(
-            Random.Range(-viewport.x, viewport.x),
-            Random.Range(-viewport.y, viewport.y)
-        );
-
-        moveable = go.GetComponent<Moveable>();
+        moveable = bird.GetComponent<Moveable>();
     }
 
     public override void Update()
@@ -42,12 +31,6 @@ public class Flying : State
         CheckEnergy();
         FollowWaypoint();
         LookForTarget();
-    }
-
-    public override void Exit()
-    {
-        base.Exit();
-        GameObject.Destroy(waypoint.gameObject);
     }
 
     private void CheckEnergy()
@@ -71,7 +54,7 @@ public class Flying : State
 
             if (distance <= bird.Range)
             {
-                stateMachine.CurrentState = new Chasing(go, stateMachine, bee.gameObject);
+                GameObject.FindObjectOfType<ChaseController>()?.BeginChase(bee, bird);
                 return;
             }
         }
@@ -79,15 +62,19 @@ public class Flying : State
 
     private void FollowWaypoint()
     {
-        moveable.Target = waypoint.transform;
+        moveable.Target = bird.Waypoints[currentWaypoint].transform;
 
         if (moveable.IsStopped)
         {
             // Set a new waypoint
-            waypoint.position = new Vector2(
-                Random.Range(-viewport.x, viewport.x),
-                Random.Range(-viewport.y, viewport.y)
-            );
+            if (currentWaypoint == bird.Waypoints.Length - 1)
+            {
+                currentWaypoint = 0;
+            }
+            else
+            {
+                currentWaypoint++;
+            }
         }
     }
 }

@@ -10,7 +10,6 @@ public class AtHive : State
 {
     private Bee bee;
     private Moveable moveable;
-    private Hive hive;
 
     public AtHive(GameObject go, StateMachine stateMachine) : base(go, stateMachine) { }
 
@@ -22,7 +21,6 @@ public class AtHive : State
         bee.GetComponent<SpriteRenderer>().color = bee.AtHiveColor;
 
         moveable = go.GetComponent<Moveable>();
-        hive = GameObject.FindObjectOfType<Hive>();
     }
 
     public override void Update()
@@ -36,7 +34,19 @@ public class AtHive : State
         {
             // Bee is at the hive
             RestoreEnergy();
-            UnloadNectar();
+        }
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        base.OnTriggerEnter2D(other);
+
+        if (bee.NectarPayload > 0f)
+        {
+            if (other.gameObject.tag == Tags.HIVE)
+            {
+                stateMachine.CurrentState = new Dancing(go, stateMachine);
+            }
         }
     }
 
@@ -49,20 +59,6 @@ public class AtHive : State
         else
         {
             stateMachine.CurrentState = new Searching(go, stateMachine);
-        }
-    }
-
-    private void UnloadNectar()
-    {
-        if (bee.NectarPayload > 0f)
-        {
-            var distance = Vector2.Distance(go.transform.position, hive.transform.position);
-
-            // When the bee returns to the hive with nectar, it "dances" for other bees until the nectar is unloaded
-            if (distance <= 0.1f)
-            {
-                stateMachine.CurrentState = new Dancing(go, stateMachine);
-            }
         }
     }
 }

@@ -4,11 +4,14 @@ using UnityEngine;
 
 // When in this State the Bee will flee back to the Hive by setting the
 // target variable in the Moveable class to the transform of the Hive GameObject.
+//
+// When the Bee collides with the Hive, the BeeEscaped() method on the ChaseController
+// is called, bringing the chase to an end.
 public class Fleeing : State
 {
     private Bee bee;
-    private Moveable moveable;
     private Hive hive;
+    private ChaseController chaseController;
 
     public Fleeing(GameObject go, StateMachine stateMachine) : base(go, stateMachine) { }
 
@@ -20,8 +23,9 @@ public class Fleeing : State
         bee.GetComponent<SpriteRenderer>().color = bee.FleeColor;
 
         hive = GameObject.FindObjectOfType<Hive>();
-        moveable = go.GetComponent<Moveable>();
+        chaseController = GameObject.FindObjectOfType<ChaseController>();
 
+        Moveable moveable = go.GetComponent<Moveable>();
         moveable.Target = hive.transform;
     }
 
@@ -29,6 +33,16 @@ public class Fleeing : State
     {
         base.Update();
         DrainEnergy();
+    }
+
+    public override void OnTriggerEnter2D(Collider2D other)
+    {
+        base.OnTriggerEnter2D(other);
+
+        if (other.gameObject.tag == Tags.HIVE)
+        {
+            chaseController?.BeeEscaped(bee);
+        }
     }
 
     private void DrainEnergy()

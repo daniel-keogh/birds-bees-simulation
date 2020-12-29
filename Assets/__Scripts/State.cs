@@ -11,7 +11,7 @@ using UnityEngine;
  * The Update() method should be called on every frame, and is responsible for switching the State if the condition for doing so is met.
  * Whenever the state changes, the Exit() method should be called and this is done automatically by the
  * StateMachine class in the CurrentState setter. Finally, the OnTriggerEnter2D() method is responsible
- * for detecting collisions between the Bird and Bee objects.
+ * for detecting collisions on the Bird and Bee colliders.
  *
  * This class holds a reference to a GameObject, which is the object to which the state applies (i.e. a Bird/Bee),
  * as well as a StateMachine which is responsible for managing the transitions between states. (By setting

@@ -44,7 +44,11 @@ public class Chasing : State
 
     public override void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Bee")
+        if (other.gameObject.tag == Tags.HIVE)
+        {
+            stateMachine.CurrentState = new Resting(go, stateMachine);
+        }
+        else if (other.gameObject.tag == Tags.BEE)
         {
             GameObject.Destroy(other.gameObject);
             stateMachine.CurrentState = new Eating(go, stateMachine);
