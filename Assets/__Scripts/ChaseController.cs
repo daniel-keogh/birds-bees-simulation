@@ -9,8 +9,7 @@ using UnityEngine.UI;
 // when an event has taken place (e.g. When a bee is eaten) and a message will 
 // be printed on the screen.
 //
-// The Chase/Flee functionality is implemented in the BeginChase() method and chasing 
-// only occurs if the Bee is not in the AtHive or Dancing States.
+// The Chase/Flee functionality is implemented in the BeginChase() method.
 //
 // Lastly, if a Bee escapes (by reaching the Hive) the BeeEscaped() method
 // is called by the OnTriggerEnter2D() method in the Bee's Fleeing State.
@@ -36,7 +35,7 @@ public class ChaseController : MonoBehaviour
     {
         State beeState = bee.StateMachine.CurrentState;
 
-        if (beeState is AtHive || beeState is Dancing)
+        if (beeState is Dancing)
         {
             return;
         }
