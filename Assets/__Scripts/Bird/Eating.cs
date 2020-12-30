@@ -27,7 +27,7 @@ public class Eating : State
 
         bird.Energy = bird.FullEnergy;
 
-        chaseController?.ShowUIMessage("bee gets eaten...");
+        chaseController?.ShowUIMessage("Bee gets eaten...");
 
         stateMachine.CurrentState = new Flying(go, stateMachine);
     }
