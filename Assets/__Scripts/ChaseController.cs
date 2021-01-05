@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 // The ChaseController singleton.
 //
-// The ShowUIMessage method is called by State objects
+// The ShowUIMessage() method is called by State objects
 // when an event has taken place (e.g. When a bee is eaten) and a message will 
 // be printed on the screen.
 //

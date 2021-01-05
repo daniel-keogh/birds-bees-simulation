@@ -14,14 +14,15 @@ using UnityEngine;
  * for detecting collisions on the Bird and Bee colliders.
  *
  * This class holds a reference to a GameObject, which is the object to which the state applies (i.e. a Bird/Bee),
- * as well as a StateMachine which is responsible for managing the transitions between states. (By setting
- * CurrentState to a different deriving class.)
+ * as well as a StateMachine which is responsible for managing the transitions between states (By setting
+ * CurrentState to a different deriving class).
  * 
  * 
  * References:
  * ===========
  *
  * My implementation of the state pattern was mainly influenced by the below sources:
+ *
  *  - Unity AI #6 State Pattern Theory - Sqrly Code - https://www.youtube.com/watch?v=b0F8jBVuzdU
  *  - Unity AI #7 State Pattern Example - Sqrly Code - https://www.youtube.com/watch?v=GxEXkP5-C3o
 */
